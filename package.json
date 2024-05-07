@@ -1,0 +1,24 @@
+{
+  "name": "ingenta-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch 'index.js' --exec 'functions-framework --target=target_schools'",
+    "start:imp_plans": "nodemon --watch 'index.js' --exec 'functions-framework --target=imp_plans'",
+    "start:score_dist": "nodemon --watch 'index.js' --exec 'functions-framework --target=score_dist'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:target_schools": "gcloud functions deploy target_schools --gen2 --runtime=nodejs20 --region=asia-east1 --source=. --entry-point=target_schools --trigger-http --allow-unauthenticated",
+    "deploy:imp_plans": "gcloud functions deploy imp_plans --gen2 --runtime=nodejs20 --region=asia-east1 --source=. --entry-point=imp_plans --trigger-http --allow-unauthenticated",
+    "deploy:score_dist": "gcloud functions deploy score_dist --gen2 --runtime=nodejs20 --region=asia-east1 --source=. --entry-point=score_dist --trigger-http --allow-unauthenticated",
+    "deploy": "npm run deploy:target_schools && npm run deploy:imp_plans && npm run deploy:score_dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
